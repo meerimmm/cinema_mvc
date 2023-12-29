@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>all_users</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+<table class="table"
+       style="width: 500px; height: 300px; margin-top: 200px; margin-left: 300px">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col"><b>ID</b></th>
+        <th scope="col"><b>X</b></th>
+        <th scope="col"><b>Y</b></th>
+        <th scope="col"><b>PRICE</b></th>
+        <th scope="col"><b style="color: darkblue"><a th:href="@{/place/save}"> ADD PLACE</a> </b></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="place:${all_places}">
+        <td style="color: darkkhaki" th:text="${place.id}"></td>
+
+        <td style="color: darkkhaki" th:text="${place.x}"></td>
+        <td style="color: darkkhaki" th:text="${place.y}"></td>
+        <td style="color: darkkhaki" th:text="${place.price}"></td>
+
+        <td>
+            <form th:action="@{/place/{id}(id=${place.getId()})}">
+                <a th:href="@{/place/delete_by_id/{id}(id=${place.getId()})}">
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                </a>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/place/{id}(id=${place.getId()})}">
+                <a th:href="@{/place/update/{id}(id=${place.getId()})}">
+                    <button type="button" class="btn btn-outline-success">Update</button>
+                </a>
+            </form>
+        </td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

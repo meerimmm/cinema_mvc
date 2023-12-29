@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>all_users</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body style="background-image: url(https://tehnikaplus.ru/upload/iblock/218/mrpyceczfehxwx1v63vi39ljksoqgn4t.jpg)">
+
+<table class="table"
+       style="width: 500px; height: 300px; margin-top: 200px; margin-left: 300px">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col"><b>ID</b></th>
+        <th scope="col"><b>NAME</b></th>
+        <th scope="col"><b>PLACES</b></th>
+        <th scope="col"><b>SESSIONS</b></th>
+        <th scope="col"><b>CINEMA</b></th>
+        <th scope="col"><b>RAISING</b></th>
+        <th scope="col"><b style="color: darkblue"><a th:href="@{/room/save}"> ADD ROOM</a> </b></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room:${all_rooms}">
+        <td style="color: darkkhaki" th:text="${room.id}"></td>
+        <td style="color: darkkhaki" th:text="${room.name}"></td>
+        <td style="color: darkkhaki" th:text="${room.places}"></td>
+        <td style="color: darkkhaki" th:text="${room.sessions}"></td>
+        <td style="color: darkkhaki" th:text="${room.cinema}"></td>
+        <td style="color: darkkhaki" th:text="${room.raising}"></td>
+        <td>
+            <form th:action="@{/room/{id}(id=${room.getId()})}">
+                <a th:href="@{/room/delete_by_id/{id}(id=${room.getId()})}">
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                    </a>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/room/{id}(id=${room.getId()})}">
+                <a th:href="@{/room/update/{id}(id=${room.getId()})}">
+                    <button type="button" class="btn btn-outline-success">Update</button>
+                   </a>
+            </form>
+        <td>
+            <a th:href="@{/session/find_by_id/{ id}(id=${room.getId()})}">
+                <button type="button" class="btn btn-warning">Session</button>
+                 </a>
+        </td>
+        </td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
